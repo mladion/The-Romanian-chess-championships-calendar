@@ -12,12 +12,14 @@
     <None Remove="Microsoft.Extensions.Logging.Log4Net.AspNetCore" />
     <None Remove="RestSharp" />
     <None Remove="Configuration\" />
+    <None Remove="HtmlAgilityPack" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="6.1.0" />
     <PackageReference Include="RestSharp" Version="108.0.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="log4net.config">
