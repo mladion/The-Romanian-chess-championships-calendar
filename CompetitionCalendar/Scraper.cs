@@ -4,20 +4,20 @@ using RestSharp;
 
 namespace CompetitionCalendar
 {
-	public class Scraper
-	{
-		private readonly RestClient restClient;
-        private readonly IOptions<ScraperConfig> scraperConfig;
+    public class Scraper
+    {
+        private readonly RestClient restClient;
+        private readonly ScraperConfig scraperConfig;
 
         public Scraper(RestClient restClient, IOptions<ScraperConfig> scraperConfig)
         {
-			this.restClient = restClient;
-            this.scraperConfig = scraperConfig;
+            this.restClient = restClient;
+            this.scraperConfig = scraperConfig.Value;
         }
 
         public string GetPageContent()
         {
-            return restClient.Execute(new RestRequest(scraperConfig.Value.SourceUrl, Method.Get)).Content;
+            return restClient.Execute(new RestRequest(scraperConfig.SourceUrl, Method.Get)).Content;
         }
     }
 }
