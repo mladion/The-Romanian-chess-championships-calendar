@@ -13,10 +13,11 @@
     <None Remove="RestSharp" />
     <None Remove="Configuration\" />
     <None Remove="HtmlAgilityPack" />
+    <None Remove=".gitignore" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="6.1.0" />
     <PackageReference Include="RestSharp" Version="108.0.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />

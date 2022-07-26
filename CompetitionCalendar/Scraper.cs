@@ -1,4 +1,5 @@
 ﻿using CompetitionCalendar.Configuration;
+using HtmlAgilityPack;
 using Microsoft.Extensions.Options;
 using RestSharp;
 
@@ -15,9 +16,20 @@ namespace CompetitionCalendar
             this.scraperConfig = scraperConfig.Value;
         }
 
+        public HtmlNode ParseTable (string cssTableClass)
+        {
+            string content = GetPageContent();
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(content);
+            HtmlNode result = htmlDocument.DocumentNode.SelectSingleNode($"//table[@class='{cssTableClass}']");
+
+            return result;
+        }
+
         public string GetPageContent()
         {
-            return restClient.Execute(new RestRequest(scraperConfig.SourceUrl, Method.Get)).Content;
+            var result = restClient.Execute(new RestRequest(scraperConfig.SourceUrl, Method.Get)).Content;
+            return result;
         }
     }
 }
