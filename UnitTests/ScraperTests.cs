@@ -1,5 +1,7 @@
 ﻿using CompetitionCalendar;
 using CompetitionCalendar.Configuration;
+using CompetitionCalendar.Models;
+using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -33,8 +35,9 @@ namespace UnitTests
         public void GetPageContent_Test()
         {
             var content = scraper.GetPageContent();
-            Assert.NotEmpty(content);
             Assert.NotNull(content);
+            Assert.NotEmpty(content);
+            Assert.Equal(typeof(string), content.GetType());
         }
 
         [Fact]
@@ -42,6 +45,17 @@ namespace UnitTests
         {
             var content = scraper.ParseTable(scraperConfig.Object.Value.CssTableClass);
             Assert.NotNull(content);
+            Assert.NotEmpty(content.InnerText);
+            Assert.Equal(typeof(HtmlNode), content.GetType());
+        }
+
+        [Fact]
+        public void ParseChampionships_Test()
+        {
+            var content = scraper.ParseChampionships();
+            Assert.NotNull(content);
+            Assert.NotEmpty(content.ToList());
+            Assert.Equal(typeof(List<Championship>), content.GetType());
         }
     }
 }
