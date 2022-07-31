@@ -1,5 +1,6 @@
 ﻿using CompetitionCalendar;
 using CompetitionCalendar.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using RestSharp;
@@ -9,13 +10,15 @@ namespace UnitTests
 {
     public class ScraperTests
     {
-        public readonly Scraper scraper;
-        public readonly RestClient restClient;
+        private readonly Scraper scraper;
+        private readonly Mock<RestClient> restClient;
+        private readonly Mock<ILogger<Scraper>> logger;
         private readonly Mock<IOptions<ScraperConfig>> scraperConfig;
 
         public ScraperTests()
         {
-            restClient = Mock.Of<RestClient>();
+            restClient = new Mock<RestClient>();
+            logger = new Mock<ILogger<Scraper>>();
             scraperConfig = new Mock<IOptions<ScraperConfig>>();
             scraperConfig.Setup(x => x.Value).Returns(() => new ScraperConfig()
             {
@@ -23,7 +26,7 @@ namespace UnitTests
                 CssTableClass = "wptb-preview-table wptb-element-main-table_setting-18262"
             });
 
-            scraper = new Scraper(restClient, scraperConfig.Object);
+            scraper = new Scraper(restClient.Object, scraperConfig.Object, logger.Object);
         }
 
         [Fact]
@@ -42,4 +45,3 @@ namespace UnitTests
         }
     }
 }
-
