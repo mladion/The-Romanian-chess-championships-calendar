@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-using System.Text;
-using CompetitionCalendar.Configuration;
+﻿using CompetitionCalendar.Configuration;
 using CompetitionCalendar.Models;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Options;
